@@ -47,18 +47,19 @@ export default function Navbar() {
         </motion.div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
-              className="text-[0.95rem] font-semibold text-secondary/70 hover:text-primary transition-colors no-underline"
-              whileHover={{ y: -1 }}
+              className="text-[1rem] font-bold text-secondary/80 hover:text-primary transition-colors no-underline"
+              whileHover={{ y: -2 }}
             >
               {link.name}
             </motion.a>
           ))}
         </nav>
+
 
         {/* CTA Buttons */}
         <div className="flex items-center gap-4">

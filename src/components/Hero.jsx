@@ -95,7 +95,7 @@ export default function Hero() {
 
         <motion.h1 
           variants={itemVariants}
-          className="text-[clamp(2.5rem,8vw,5rem)] font-black mb-6 leading-[1.05] tracking-tighter text-white"
+          className="text-[clamp(3rem,10vw,6rem)] font-black mb-8 leading-[1] tracking-tighter text-white drop-shadow-2xl"
         >
           Explore the World <br />
           <span className="text-primary italic">With Us</span>
@@ -103,10 +103,11 @@ export default function Hero() {
 
         <motion.p 
           variants={itemVariants}
-          className="text-[clamp(1rem,2.5vw,1.25rem)] mb-10 opacity-90 font-medium max-w-[700px] mx-auto leading-relaxed"
+          className="text-[clamp(1.1rem,2.5vw,1.5rem)] mb-12 opacity-95 font-medium max-w-[800px] mx-auto leading-relaxed text-white/90 drop-shadow-md"
         >
           Embark on unforgettable journeys across continents. From serene landscapes to vibrant cityscapes, we craft experiences that last a lifetime.
         </motion.p>
+
         
         <motion.div 
           variants={itemVariants}
