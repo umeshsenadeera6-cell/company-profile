@@ -6,9 +6,11 @@
   --color-accent: hsl(var(--accent));
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
+  --color-glass-border: hsl(var(--glass-border));
   --radius-xl: 1.5rem;
   --radius-2xl: 2.5rem;
 }
+
 
 @layer base {
   :root {
