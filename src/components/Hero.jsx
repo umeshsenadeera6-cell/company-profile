@@ -95,84 +95,45 @@ export default function Hero() {
 
         <motion.h1 
           variants={itemVariants}
-          style={{
-            fontSize: 'clamp(2.5rem, 8vw, 5rem)',
-            fontWeight: '900',
-            marginBottom: '1.5rem',
-            lineHeight: 1.05,
-            letterSpacing: '-0.04em',
-            color: '#fff'
-          }}
+          className="text-[clamp(2.5rem,8vw,5rem)] font-black mb-6 leading-[1.05] tracking-tighter text-white"
         >
-          Journey Into the <span style={{ color: 'hsl(var(--primary))' }}>Heart of Paradise</span>
+          Explore the World <br />
+          <span className="text-primary italic">With Us</span>
         </motion.h1>
 
         <motion.p 
           variants={itemVariants}
-          style={{
-            fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
-            marginBottom: '2.5rem',
-            opacity: 0.9,
-            fontWeight: '400',
-            maxWidth: '700px',
-            margin: '0 auto 2.5rem auto',
-            lineHeight: 1.6
-          }}
+          className="text-[clamp(1rem,2.5vw,1.25rem)] mb-10 opacity-90 font-medium max-w-[700px] mx-auto leading-relaxed"
         >
-          Discover hidden gems from the misty mountains of Ella to the sun-kissed beaches of Galle. Your luxury adventure awaits.
+          Embark on unforgettable journeys across continents. From serene landscapes to vibrant cityscapes, we craft experiences that last a lifetime.
         </motion.p>
         
         <motion.div 
           variants={itemVariants}
-          style={{
-            display: 'flex',
-            gap: '1.25rem',
-            justifyContent: 'center',
-            flexWrap: 'wrap'
-          }}
+          className="flex gap-5 justify-center flex-wrap"
         >
           <motion.button 
             whileHover={{ scale: 1.05, translateY: -2 }}
             whileTap={{ scale: 0.98 }}
-            className="btn btn-primary" 
-            style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}
+            className="btn btn-primary px-10 py-4 text-lg"
+            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Start Your Journey
+            Learn More
             <ChevronRight size={20} />
           </motion.button>
           
           <motion.button 
             whileHover={{ scale: 1.02, backgroundColor: 'rgba(255,255,255,0.15)' }}
             whileTap={{ scale: 0.98 }}
-            style={{
-              padding: '1.2rem 2.5rem',
-              fontSize: '1.1rem',
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              color: '#fff',
-              backdropFilter: 'blur(10px)',
-              borderRadius: '999px',
-              border: '1px solid rgba(255,255,255,0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              cursor: 'pointer',
-              fontWeight: '600'
-            }}
+            className="px-10 py-4 text-lg bg-white/10 text-white backdrop-blur-md rounded-full border border-white/20 flex items-center gap-3 cursor-pointer font-bold transition-all"
           >
-            <div style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: 'hsl(var(--primary))',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
+            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <Play size={16} fill="white" />
             </div>
-            Watch Experience
+            Our Story
           </motion.button>
         </motion.div>
+
       </motion.div>
 
       {/* Decorative Gradient Overlays */}

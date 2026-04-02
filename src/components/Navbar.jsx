@@ -15,9 +15,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Inbound', href: '#inbound' },
-    { name: 'Outbound', href: '#outbound' },
     { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'Destinations', href: '#destinations' },
+    { name: 'Team', href: '#team' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -26,71 +27,33 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        padding: scrolled ? '1rem 0' : '1.5rem 0',
-        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-        backgroundColor: scrolled ? 'hsla(0, 0%, 100%, 0.7)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px) saturate(180%)' : 'none',
-        borderBottom: scrolled ? '1px solid hsl(var(--glass-border))' : 'none',
-      }}
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-400 ${
+        scrolled ? 'py-3 bg-white/70 backdrop-blur-xl border-b border-glass-border shadow-sm' : 'py-6 bg-transparent'
+      }`}
     >
-      <div style={{
-        maxWidth: '1440px',
-        margin: '0 auto',
-        padding: '0 5%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
+      <div className="container-custom flex items-center justify-between">
         {/* Logo */}
         <motion.div 
           whileHover={{ scale: 1.05 }}
-          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }}
+          className="flex items-center gap-3 cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <div style={{
-            backgroundColor: 'hsl(var(--primary))',
-            color: 'white',
-            padding: '0.5rem',
-            borderRadius: '0.75rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 10px hsla(var(--primary) / 0.3)'
-          }}>
+          <div className="bg-primary text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
             <Compass size={24} />
           </div>
-          <span style={{ 
-            fontSize: '1.5rem', 
-            fontWeight: '900', 
-            letterSpacing: '-1px',
-            color: scrolled ? 'hsl(var(--foreground))' : 'hsl(var(--foreground))'
-          }}>
-            ASTRA<span style={{ color: 'hsl(var(--primary))' }}>TRAVEL</span>
+          <span className="text-xl font-black tracking-tighter text-secondary">
+            ASTRA<span className="text-primary">TRAVEL</span>
           </span>
         </motion.div>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }} className="desktop-only">
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
-              whileHover={{ y: -2 }}
-              style={{
-                textDecoration: 'none',
-                color: 'hsl(var(--foreground))',
-                fontSize: '0.95rem',
-                fontWeight: '600',
-                opacity: 0.8,
-                transition: 'opacity 0.2s',
-              }}
-              onMouseEnter={(e) => e.target.style.opacity = 1}
-              onMouseLeave={(e) => e.target.style.opacity = 0.8}
+              className="text-[0.95rem] font-semibold text-secondary/70 hover:text-primary transition-colors no-underline"
+              whileHover={{ y: -1 }}
             >
               {link.name}
             </motion.a>
@@ -98,39 +61,49 @@ export default function Navbar() {
         </nav>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <button className="btn btn-ghost hide-mobile" style={{ padding: '0.6rem 1.25rem' }}>
-            <Globe size={18} />
+        <div className="flex items-center gap-4">
+          <button className="btn btn-ghost hidden lg:flex px-4 py-2 text-sm bg-black/5 border-none">
+            <Globe size={16} />
             EN
           </button>
-          <button className="btn btn-primary" style={{ padding: '0.6rem 1.25rem' }}>
-            Book Now
+          <button className="btn btn-primary px-6 py-2.5 text-sm">
+            Contact Us
           </button>
           
           {/* Mobile Menu Toggle */}
           <button 
-            style={{ 
-              display: 'none', 
-              background: 'none', 
-              border: 'none', 
-              cursor: 'pointer',
-              color: 'hsl(var(--foreground))'
-            }} 
-            className="mobile-toggle"
+            className="md:hidden p-2 text-secondary bg-black/5 rounded-lg"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Basic responsive CSS for demo since I can't add media queries easily in inline style */}
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-only, .hide-mobile { display: none !important; }
-          .mobile-toggle { display: block !important; }
-        }
-      `}</style>
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-glass-border overflow-hidden"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg font-bold text-secondary no-underline py-2 border-b border-black/5"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }
